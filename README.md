@@ -1,6 +1,7 @@
+[![Build Status](https://travis-ci.org/minot0r/iutcalendar.svg?branch=master)](https://travis-ci.org/minot0r/iutcalendar)
+
 # iutcalendar
 a npm package to retrieve courses of Nantes' IUT
-[![Build Status](https://travis-ci.org/minot0r/iutcalendar.svg?branch=master)](https://travis-ci.org/minot0r/iutcalendar)
 
 # example
 
