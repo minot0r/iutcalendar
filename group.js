@@ -1,5 +1,10 @@
-let group = class Group {
+let Group = class Group {
 
+    /**
+     * @constructor
+     * @param {number} td TD's group
+     * @param {number} tp TP's gtoup
+     */
     constructor(td, tp) {
         this.td = td
         this.tp = tp
@@ -15,7 +20,7 @@ let group = class Group {
 
     /**
      * Get a beautified version of group
-     * @param {string} Way it is showed
+     * @param {string} [pattern=$1 - ] Way it is showed
      * @returns {string}
      */
     getFormattedGroup(pattern = '$1 - ') {
@@ -40,4 +45,4 @@ let group = class Group {
 
 }
 
-module.exports = group
+module.exports = Group

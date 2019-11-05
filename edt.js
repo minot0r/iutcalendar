@@ -3,6 +3,11 @@ const Course = require('./course')
 const Group = require('./group')
 
 let EDT = class EDT {
+    /**
+     * @constructor
+     * @param {Group} group The group you want courses for
+     * @param {Date} date From when to start filtering groups
+     */
     constructor(group, date) {
         this.group = group
         this.date = date
@@ -11,6 +16,12 @@ let EDT = class EDT {
     /**
      * This function returns a Promise resolving the EDT object you just instanciated with Courses loaded in it
      * @returns {Promise} containing EDT object with courses loaded
+     * @example
+     * new EDT(anyGroup, anyDate).build().then(edt => {
+     *  // Treat your EDT object
+     * }).catch(err => {
+     *  // Treat your error
+     * })
      */
     build() {
         return new Promise((resolve, reject) => {
@@ -35,6 +46,13 @@ let EDT = class EDT {
     /**
      * Get all the new courses (courses from today, to calendar end)
      * @returns {Array.<Course>}
+     * @example
+     * new EDT(anyGroup, anyDate).build().then(edt => {
+     *  // You'll end up getting only courses starting at anyDate
+     *  const allCourses = edt.getCourses()
+     * }).catch(err => {
+     *  // Treat your error
+     * })
      */
     getCourses() {
         return this.courses
@@ -42,8 +60,14 @@ let EDT = class EDT {
 
     /**
      * Get courses of date you pass as parameter
-     * @param {Date}
+     * @param {Date} [date=new Date()] Date when course will be picked-up
      * @returns {Array.<Course>} filtered courses
+     * @example
+     * new EDT(anyDate, anyDate).build().then(edt => {
+     *  const tomorrowCourses = edt.getCoursesFrom(dateOfTomorrow)
+     * }).catch(err => {
+     *  // Treat your error
+     * })
      */
     getCoursesFrom(date = new Date()) {
         return this.courses.filter(course => course.schedules.start.getDate() == date.getDate() && course.schedules.start.getMonth() == date.getMonth())
@@ -52,6 +76,13 @@ let EDT = class EDT {
     /**
      * Get the nearest next course
      * @returns {Course}
+     * @example
+     * new EDT(anyDate, anyDate).build().then(edt => {
+     *  // Note : You're not getting the course the closest to anyDate, but the closest to now
+     *  const next = edt.getClosestCourse()
+     * }).catch(err => {
+     *  // Treat your error
+     * })
      */
     getClosestCourse() {
         if(this.courses.length === 0) return new Object()

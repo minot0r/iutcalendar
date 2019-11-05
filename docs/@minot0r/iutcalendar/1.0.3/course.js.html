@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>course.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Course.html">Course</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Course.html#getEndDate">getEndDate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Course.html#getFormattedEndDate">getFormattedEndDate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Course.html#getFormattedStartDate">getFormattedStartDate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Course.html#getLocation">getLocation</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Course.html#getProfessor">getProfessor</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Course.html#getStartDate">getStartDate</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Course.html#getStudGroup">getStudGroup</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Course.html#getSubject">getSubject</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Course.html#getType">getType</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="EDT.html">EDT</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="EDT.html#build">build</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="EDT.html#getClosestCourse">getClosestCourse</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="EDT.html#getCourses">getCourses</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="EDT.html#getCoursesFrom">getCoursesFrom</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="EDT.html#getGroup">getGroup</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Group.html">Group</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#getFormattedGroup">getFormattedGroup</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#getICalendarGroup">getICalendarGroup</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#getTD">getTD</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Group.html#getTP">getTP</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">course.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let Course = class Course {
+    /**
+     * You'll never need to build your own courses, they will be created automatically by {@link EDT}
+     * @constructor
+     * @param {JSON} data Data given by EDT when parsing iCalendar file
+     */
+    constructor(data) {
+        this.schedules = {
+            start: new Date(data.start),
+            end: new Date(data.end),
+            formattedStart: `${data.start.getHours()}h${data.start.getMinutes()}`,
+            formattedEnd: `${data.end.getHours()}h${data.end.getMinutes()}`
+        }
+        if(data.summary.length != '' &amp;&amp; data.location != '') {
+            this.type = data.summary.split('-')[0].trim()
+            this.subject = data.summary.split('-')[1].trim().split(',')[0]
+            this.studGroup = data.summary.split(',')[1].trim()
+            this.professor = data.summary.split(',')[2].trim()
+            this.location = data.location.replace(/^J-/, '')
+        }
+    }
+
+    /**
+     * Get start date
+     * @returns {Date}
+     */
+    getStartDate() {
+        return this.schedules.start
+    }
+
+    /**
+     * Get end date
+     * @returns {Date}
+     */
+    getEndDate() {
+        return this.schedules.end
+    }
+
+    /**
+     * Get start date in a prettyfied way
+     * @returns {string}
+     */
+    getFormattedStartDate() {
+        return this.schedules.formattedStart
+    }
+
+    /**
+     * Get end date in a prettyfied way
+     * @returns {string}
+     */
+    getFormattedEndDate() {
+        return this.schedules.formattedEnd
+    }
+
+    /**
+     * Get which type of course is it
+     * @returns {string}
+     */
+    getType() {
+        return this.type
+    }
+
+    /**
+     * Get subject of course
+     * @returns {string}
+     */
+    getSubject() {
+        return this.subject
+    }
+
+    /**
+     * Get student group of course
+     * @returns {string}
+     */
+    getStudGroup() {
+        return this.studGroup
+    }
+
+    /**
+     * Get professor of course
+     * @returns {string}
+     */
+    getProfessor() {
+        return this.professor
+    }
+
+    /**
+     * Where the course takes place
+     * @returns {string}
+     */
+    getLocation() {
+        return this.location
+    }
+}
+
+module.exports = Course</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Nov 05 2019 23:02:18 GMT+0100 (GMT+01:00) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

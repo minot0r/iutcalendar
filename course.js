@@ -1,4 +1,9 @@
-let course = class Course {
+let Course = class Course {
+    /**
+     * You'll never need to build your own courses, they will be created automatically by {@link EDT}
+     * @constructor
+     * @param {JSON} data Data given by EDT when parsing iCalendar file
+     */
     constructor(data) {
         this.schedules = {
             start: new Date(data.start),
@@ -14,6 +19,78 @@ let course = class Course {
             this.location = data.location.replace(/^J-/, '')
         }
     }
+
+    /**
+     * Get start date
+     * @returns {Date}
+     */
+    getStartDate() {
+        return this.schedules.start
+    }
+
+    /**
+     * Get end date
+     * @returns {Date}
+     */
+    getEndDate() {
+        return this.schedules.end
+    }
+
+    /**
+     * Get start date in a prettyfied way
+     * @returns {string}
+     */
+    getFormattedStartDate() {
+        return this.schedules.formattedStart
+    }
+
+    /**
+     * Get end date in a prettyfied way
+     * @returns {string}
+     */
+    getFormattedEndDate() {
+        return this.schedules.formattedEnd
+    }
+
+    /**
+     * Get which type of course is it
+     * @returns {string}
+     */
+    getType() {
+        return this.type
+    }
+
+    /**
+     * Get subject of course
+     * @returns {string}
+     */
+    getSubject() {
+        return this.subject
+    }
+
+    /**
+     * Get student group of course
+     * @returns {string}
+     */
+    getStudGroup() {
+        return this.studGroup
+    }
+
+    /**
+     * Get professor of course
+     * @returns {string}
+     */
+    getProfessor() {
+        return this.professor
+    }
+
+    /**
+     * Where the course takes place
+     * @returns {string}
+     */
+    getLocation() {
+        return this.location
+    }
 }
 
-module.exports = course
+module.exports = Course

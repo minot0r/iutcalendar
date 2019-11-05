@@ -3,11 +3,26 @@
 # iutcalendar
 a npm package to retrieve courses of Nantes' IUT
 
+# install
+install using
+`npm i @minot0r/iutcalendar`
+
 # example
 
-Get closest course (next one)
+this is a basic example of getting next course using iutcalendar
 
-    new EDT(new Group(1, 1), new Date()).build().then(edt => {
-        const nextCourse = edt.getClosestCourse();
-        // Work with your object 
-    })
+```js
+/* Basically you're creating your EDT object, then you build it, 
+ * build here does retrieve all courses from constructor parameters
+ * and returns a Promise which gives you back your EDT object
+ * with courses loaded.
+ * 
+ * Play around with other EDT methods which you can find on docs
+ */
+new EDT(new Group(1, 1), new Date()).build().then(edt => {
+    let nextCourse = edt.getClosestCourse()
+    // Play around with your course, find all data you can get from it with docs
+}).catch(err => {
+    // In case there is an error
+})
+```

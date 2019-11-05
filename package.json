@@ -4,7 +4,8 @@
   "description": "Get courses from IUT using HTTP GET using ical library on IUT's EDT WebServers",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "build-docs": "jsdoc --configure .jsdoc.json --verbose"
   },
   "keywords": [
     "iut",
@@ -15,6 +16,7 @@
   "author": "minot0r",
   "license": "MIT",
   "dependencies": {
-    "ical": "^0.6.0"
+    "ical": "^0.6.0",
+    "minami": "^1.2.3"
   }
 }
