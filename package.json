@@ -1,11 +1,11 @@
 {
   "name": "@minot0r/iutcalendar",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Get courses from IUT using HTTP GET using ical library on IUT's EDT WebServers",
   "main": "index.js",
   "scripts": {
     "test": "node test.js",
-    "build-docs": "jsdoc --configure .jsdoc.json --verbose"
+    "build-docs": "jsdoc --configure .jsdoc.json --verbose && cp -r ./docs/@minot0r/iutcalendar/1.0.4/* ./docs && rm -rf ./docs/@minot0r"
   },
   "keywords": [
     "iut",

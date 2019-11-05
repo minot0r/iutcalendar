@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>edt.js - Documentation</title>
+    <title>group.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">edt.js</h1>
+    <h1 class="page-title">group.js</h1>
     
 
     
@@ -39,104 +39,54 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const ical = require('ical')
-const Course = require('./course')
-const Group = require('./group')
+            <pre class="prettyprint source linenums"><code>let Group = class Group {
 
-let EDT = class EDT {
     /**
      * @constructor
-     * @param {Group} group The group you want courses for
-     * @param {Date} date From when to start filtering groups
+     * @param {number} td TD's group
+     * @param {number} tp TP's gtoup
      */
-    constructor(group, date) {
-        this.group = group
-        this.date = date
+    constructor(td, tp) {
+        this.td = td
+        this.tp = tp
     }
 
     /**
-     * This function returns a Promise resolving the EDT object you just instanciated with Courses loaded in it
-     * @returns {Promise} containing EDT object with courses loaded
-     * @example
-     * new EDT(anyGroup, anyDate).build().then(edt => {
-     *  // Treat your EDT object
-     * }).catch(err => {
-     *  // Treat your error
-     * })
+     * Get iCalendar group, which is the code in URL (e.g. 3163 for 1 - 1)
+     * @returns {number} Group
      */
-    build() {
-        return new Promise((resolve, reject) => {
-            ical.fromURL(`https://edt.univ-nantes.fr/iut_nantes/g${this.group.getICalendarGroup()}.ics`, {}, (err, data) => {
-                if(err) return reject(err)
-                this.courses = Object.values(data).filter((event) => event.type == 'VEVENT' &amp;&amp; 
-                    new Date(event.start).getDate() >= new Date(this.date).getDate() &amp;&amp; 
-                    new Date(event.start).getMonth() == new Date(this.date).getMonth()).map(course => new Course(course))
-                resolve(this)
-            })
-        })
+    getICalendarGroup() {
+        return 3160 + 2 * this.td + this.tp;
     }
 
     /**
-     * Get group of EDT Object
-     * @returns {Group} you passed to constructor
+     * Get a beautified version of group
+     * @param {string} [pattern=$1 - ] Way it is showed
+     * @returns {string}
      */
-    getGroup() {
-        return this.group
+    getFormattedGroup(pattern = '$1 - ') {
+        return `${this.td} ${this.tp}`.replace(/(\d)\s(?=\d)/g, pattern)
     }
 
     /**
-     * Get all the new courses (courses from today, to calendar end)
-     * @returns {Array.&lt;Course>}
-     * @example
-     * new EDT(anyGroup, anyDate).build().then(edt => {
-     *  // You'll end up getting only courses starting at anyDate
-     *  const allCourses = edt.getCourses()
-     * }).catch(err => {
-     *  // Treat your error
-     * })
+     * Get TP passed as constructor
+     * @returns {number}
      */
-    getCourses() {
-        return this.courses
+    getTP() {
+        return this.tp;
     }
 
     /**
-     * Get courses of date you pass as parameter
-     * @param {Date} [date=new Date()] Date when course will be picked-up
-     * @returns {Array.&lt;Course>} filtered courses
-     * @example
-     * new EDT(anyDate, anyDate).build().then(edt => {
-     *  const tomorrowCourses = edt.getCoursesFrom(dateOfTomorrow)
-     * }).catch(err => {
-     *  // Treat your error
-     * })
-     */
-    getCoursesFrom(date = new Date()) {
-        return this.courses.filter(course => course.schedules.start.getDate() == date.getDate() &amp;&amp; course.schedules.start.getMonth() == date.getMonth())
+     * Get TD passed as constructor
+     * @returns {number}
+     */    
+    getTD() {
+        return this.td;
     }
 
-    /**
-     * Get the nearest next course
-     * @returns {Course}
-     * @example
-     * new EDT(anyDate, anyDate).build().then(edt => {
-     *  // Note : You're not getting the course the closest to anyDate, but the closest to now
-     *  const next = edt.getClosestCourse()
-     * }).catch(err => {
-     *  // Treat your error
-     * })
-     */
-    getClosestCourse() {
-        if(this.courses.length === 0) return new Object()
-        return this.courses.reduce((lastCourse, course) => {
-            if(course.schedules.start >= new Date() 
-                &amp;&amp; (course.schedules.start &lt;= lastCourse.schedules.start || lastCourse.schedules.start &lt; new Date()))
-                return course
-            else return lastCourse
-        }, this.courses[0])
-    }
 }
 
-module.exports = EDT</code></pre>
+module.exports = Group</code></pre>
         </article>
     </section>
 
@@ -148,7 +98,7 @@ module.exports = EDT</code></pre>
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Nov 05 2019 23:02:18 GMT+0100 (GMT+01:00) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Nov 05 2019 23:18:39 GMT+0100 (GMT+01:00) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

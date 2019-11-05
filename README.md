@@ -9,6 +9,7 @@ install using
 
 # example
 
+[Docs]{https://minot0r.github.io/iutcalendar/}
 this is a basic example of getting next course using iutcalendar
 
 ```js

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>EDT - Documentation</title>
+    <title>Group - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">EDT</h1>
+    <h1 class="page-title">Group</h1>
     
 
     
@@ -42,7 +42,7 @@
 <header>
     
         <h2>
-        EDT
+        Group
         </h2>
         
     
@@ -56,7 +56,7 @@
 
     
 
-    <h4 class="name" id="EDT"><span class="type-signature"></span>new EDT<span class="signature">(group, date)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Group"><span class="type-signature"></span>new Group<span class="signature">(td, tp)</span><span class="type-signature"></span></h4>
 
     
 
@@ -95,7 +95,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="edt.js.html">edt.js</a>, <a href="edt.js.html#line11">line 11</a>
+        <a href="group.js.html">group.js</a>, <a href="group.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -139,13 +139,13 @@
 
         <tr>
             
-                <td class="name"><code>group</code></td>
+                <td class="name"><code>td</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code><a href="Group.html">Group</a></code></span>
+<span class="param-type"><code>number</code></span>
 
 
             
@@ -156,7 +156,7 @@
             
 
             <td class="description last">
-                <p>The group you want courses for</p>
+                <p>TD's group</p>
                 
             </td>
         </tr>
@@ -165,13 +165,13 @@
 
         <tr>
             
-                <td class="name"><code>date</code></td>
+                <td class="name"><code>tp</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>Date</code></span>
+<span class="param-type"><code>number</code></span>
 
 
             
@@ -182,7 +182,7 @@
             
 
             <td class="description last">
-                <p>From when to start filtering groups</p>
+                <p>TP's gtoup</p>
                 
             </td>
         </tr>
@@ -231,14 +231,14 @@
 
     
 
-    <h4 class="name" id="build"><span class="type-signature"></span>build<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="getFormattedGroup"><span class="type-signature"></span>getFormattedGroup<span class="signature">(pattern<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>This function returns a Promise resolving the EDT object you just instanciated with Courses loaded in it</p>
+    <p>Get a beautified version of group</p>
 </div>
 
 
@@ -274,344 +274,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="edt.js.html">edt.js</a>, <a href="edt.js.html#line26">line 26</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>Promise</code></span>
-
-
-    </dd>
-</dl>
-
-
-<div class="param-desc">
-    <p>containing EDT object with courses loaded</p>
-</div>
-
-    
-</div>
-
-
-
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>new EDT(anyGroup, anyDate).build().then(edt => { // Treat your EDT object}).catch(err => { // Treat your error})</code></pre>
-
-</div>
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="getClosestCourse"><span class="type-signature"></span>getClosestCourse<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Course.html">Course</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Get the nearest next course</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="edt.js.html">edt.js</a>, <a href="edt.js.html#line87">line 87</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code><a href="Course.html">Course</a></code></span>
-
-
-    </dd>
-</dl>
-
-
-    
-</div>
-
-
-
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>new EDT(anyDate, anyDate).build().then(edt => { // Note : You're not getting the course the closest to anyDate, but the closest to now const next = edt.getClosestCourse()}).catch(err => { // Treat your error})</code></pre>
-
-</div>
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="getCourses"><span class="type-signature"></span>getCourses<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;<a href="Course.html">Course</a>>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Get all the new courses (courses from today, to calendar end)</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="edt.js.html">edt.js</a>, <a href="edt.js.html#line57">line 57</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>Array.&lt;<a href="Course.html">Course</a>></code></span>
-
-
-    </dd>
-</dl>
-
-
-    
-</div>
-
-
-
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>new EDT(anyGroup, anyDate).build().then(edt => { // You'll end up getting only courses starting at anyDate const allCourses = edt.getCourses()}).catch(err => { // Treat your error})</code></pre>
-
-</div>
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id="getCoursesFrom"><span class="type-signature"></span>getCoursesFrom<span class="signature">(date<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="Course.html">Course</a>>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Get courses of date you pass as parameter</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="edt.js.html">edt.js</a>, <a href="edt.js.html#line72">line 72</a>
+        <a href="group.js.html">group.js</a>, <a href="group.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
@@ -659,13 +322,13 @@
 
         <tr>
             
-                <td class="name"><code>date</code></td>
+                <td class="name"><code>pattern</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>Date</code></span>
+<span class="param-type"><code>string</code></span>
 
 
             
@@ -686,13 +349,13 @@
             
                 <td class="default">
                 
-                    new Date()
+                    $1 -
                 
                 </td>
             
 
             <td class="description last">
-                <p>Date when course will be picked-up</p>
+                <p>Way it is showed</p>
                 
             </td>
         </tr>
@@ -725,28 +388,17 @@
     </dt>
     <dd>
         
-<span class="param-type"><code>Array.&lt;<a href="Course.html">Course</a>></code></span>
+<span class="param-type"><code>string</code></span>
 
 
     </dd>
 </dl>
 
 
-<div class="param-desc">
-    <p>filtered courses</p>
-</div>
-
     
 </div>
 
 
-
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>new EDT(anyDate, anyDate).build().then(edt => { const tomorrowCourses = edt.getCoursesFrom(dateOfTomorrow)}).catch(err => { // Treat your error})</code></pre>
-
-</div>
 
 </div>
         
@@ -755,14 +407,14 @@
 
     
 
-    <h4 class="name" id="getGroup"><span class="type-signature"></span>getGroup<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Group.html">Group</a>}</span></h4>
+    <h4 class="name" id="getICalendarGroup"><span class="type-signature"></span>getICalendarGroup<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Get group of EDT Object</p>
+    <p>Get iCalendar group, which is the code in URL (e.g. 3163 for 1 - 1)</p>
 </div>
 
 
@@ -798,7 +450,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="edt.js.html">edt.js</a>, <a href="edt.js.html#line42">line 42</a>
+        <a href="group.js.html">group.js</a>, <a href="group.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -840,7 +492,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><code><a href="Group.html">Group</a></code></span>
+<span class="param-type"><code>number</code></span>
 
 
     </dd>
@@ -848,8 +500,216 @@
 
 
 <div class="param-desc">
-    <p>you passed to constructor</p>
+    <p>Group</p>
 </div>
+
+    
+</div>
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="getTD"><span class="type-signature"></span>getTD<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Get TD passed as constructor</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="group.js.html">group.js</a>, <a href="group.js.html#line42">line 42</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>number</code></span>
+
+
+    </dd>
+</dl>
+
+
+    
+</div>
+
+
+
+</div>
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="getTP"><span class="type-signature"></span>getTP<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Get TP passed as constructor</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="group.js.html">group.js</a>, <a href="group.js.html#line34">line 34</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>number</code></span>
+
+
+    </dd>
+</dl>
+
 
     
 </div>
@@ -875,7 +735,7 @@
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Nov 05 2019 23:02:18 GMT+0100 (GMT+01:00) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Nov 05 2019 23:18:39 GMT+0100 (GMT+01:00) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
