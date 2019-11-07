@@ -5,6 +5,7 @@ let Course = class Course {
      * @param {JSON} data Data given by EDT when parsing iCalendar file
      */
     constructor(data) {
+        this.raw = data
         this.schedules = {
             start: new Date(data.start),
             end: new Date(data.end),
@@ -18,6 +19,14 @@ let Course = class Course {
             this.professor = data.summary.split(',')[2].trim()
             this.location = data.location.replace(/^J-/, '')
         }
+    }
+
+    /**
+     * get raw data from iCalendar file
+     * @returns {JSONObject} raw data
+     */
+    getRaw() {
+        return this.raw
     }
 
     /**
