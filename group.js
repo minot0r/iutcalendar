@@ -15,7 +15,7 @@ let Group = class Group {
      * @returns {number} Group
      */
     getICalendarGroup() {
-        return 3160 + 2 * this.td + this.tp;
+        return 3160 + 2 * this.td + 1 * this.tp;
     }
 
     /**
